@@ -1,24 +1,172 @@
 .header-container {
-  min-height: 50vh;
+  max-height: 75vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
 .darkmode .header-container {
-  min-height: 50vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
 }
+.space-tp {
+  margin-top: 200px;
+}
 
-.header-img {
-  width: 60%;
-  min-height: 10vh;
-  min-height: auto;
-  margin-bottom: 0 auto;
+
+/* HERO */
+.container__titulos {
+  display: block;
+  align-items: flex-start;
+  text-align: center;
+  width: 500px;
+  margin: 40px;
+}
+
+.h1-titulo {
+  color: var(--dark-color);
+  text-align: left;
+  font: 400 100px/110px "Anton", sans-serif;
+  margin-top: 40px;
+  position: relative;
+  width: auto;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Contenedor de divisiones */
+.icon-container {
+  box-sizing: border-box;
+  width: 900px;
+  height: 900px;
+  left: 30%;
+  top: 30%;
+  position: relative;
+  transition: transform 0.6s ease;
+  border-radius: 50%;
+}
+
+.change-btn-div {
+  display: flex;
+  width: 101.592px;
+  height: 52.456px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 45px;
   position: relative;
 }
 
-.icon-container {
+.control-plagas {
+  border-radius: 561.83px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: -160px;
+  transform-origin: 0 0;
+  transform: rotate(-15deg) scale(1, 1);
+}
+
+.control-plagas img {
+  border-radius: 258.44px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: calc(50% - 80px);
+  top: calc(50% - 80px);
+  transform-origin: 0 0;
+  transition: box-shadow 0.3s ease;
+}
+
+.control-plagas img:hover {
+  box-shadow: 0px 4.49px 56.18px 0px rgba(104, 50, 231, 0.5);
+}
+
+.limpieza {
+  border-radius: 561.83px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: 350px;
+  top: -250px;
+  transform-origin: 0 0;
+  transform: rotate(15deg) scale(1, 1);
+}
+
+.limpieza img {
+  border-radius: 258.44px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: calc(50% - 80px);
+  top: calc(50% - 80px);
+  transform-origin: 0 0;
+  transition: box-shadow 0.3s ease;
+}
+
+.limpieza img:hover {
+  box-shadow: 0px 4.49px 56.18px 0px rgba(237, 152, 44, 0.5);
+}
+
+.jardines {
+  border-radius: 561.83px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: 860px;
+  top: -100px;
+  transform-origin: 0 0;
+  transform: rotate(45deg) scale(1, 1);
+}
+
+.jardines img {
+  border-radius: 258.44px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: calc(50% - 80px);
+  top: calc(50% - 80px);
+  transition: box-shadow 0.3s ease;
+}
+
+.jardines img:hover {
+  box-shadow: 0px 4.49px 56.18px 0px rgba(18, 231, 182, 0.5);
+}
+
+.sanitizacion {
+  border-radius: 561.83px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: 1050px;
+  top: 350px;
+  transform-origin: 0 0;
+  transform: rotate(75deg) scale(1, 1);
+}
+
+.sanitizacion img {
+  border-radius: 258.44px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: calc(50% - 80px);
+  top: calc(50% - 80px);
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+  transition: box-shadow 0.3s ease;
+}
+
+.sanitizacion img:hover {
+  box-shadow: 0px 4.49px 56.18px 0px rgba(0, 94, 216, 0.5);
+}
+
+
+
+
+/* .icon-container {
   width: 150px;
   height: 160px;
   backdrop-filter: blur(6px);
@@ -53,7 +201,7 @@
 
 .icon-container:active {
   transform: scale(0.95) rotateZ(1.7deg);
-}
+} */
 
 /* ícono darkMode */
 .darkMode-button {
@@ -141,7 +289,7 @@
   height: 600px;
   display: flex;
   flex-direction: row;
-  justify-content: center ;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
   background-size: contain;
@@ -219,27 +367,4 @@
 .card-text {
   font-size: 14px;
   line-height: 1.5;
-}
-
-.carousel-inner {
-  width: 80%;
-  height: auto;
-
-}
-
-
-.carousel-item {
-  animation: expand 10s infinite alternate ease-in-out;
-}
-
-@keyframes expand {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
 }

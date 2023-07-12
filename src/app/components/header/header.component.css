@@ -1,8 +1,19 @@
+header {
+  background-color: #F5F5F5;
+  transition: background-color 0.5s ease;
+}
+
+.glassmorphism {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
 .navbar {
-  background: var(--bkg-color);
-  z-index: 9;
+  background: transparent;
+  z-index: 99;
   padding-top: 0;
   padding-bottom: 0;
+  position: relative;
 }
 
 .navbar-brand {
@@ -25,7 +36,7 @@
 }
 
 .logo {
-  width: 200px;
+  width: 180px;
   height: auto;
 }
 
@@ -41,8 +52,8 @@
   font-size: var(--h6-font-size);
   font-weight: var(--font-weight-medium);
   position: relative;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .navbar-nav .nav-link.active,
@@ -142,8 +153,8 @@
 .site-header {
   background: var(--secondary-color);
   position: relative;
-  padding-top: 15px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .site-header p,

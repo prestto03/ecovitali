@@ -1,69 +1,92 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
+import { gsap } from 'gsap';
+
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css'],
   animations: [
-    trigger('reduceImage', [
-      state('initial', style({})),
-      state('final', style({})),
-      transition('initial => final', [
-        animate('5s')
-      ])
-    ])
-  ]
+    // ANIMACIONES PARA EL MENU -----------------------------------------------
+    trigger('fadeinUp', [
+      transition('* => *', [
+        style({ opacity: 0, transform: 'translateY(0px)' }),
+        animate('900ms ease', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
-export class InicioComponent implements OnInit, AfterViewInit  {
-  estadoAnimacion: string;
 
-  constructor(private router: Router ) {
-    this.estadoAnimacion = 'final';
+export class InicioComponent {
+
+  //CAMBIO DE TITULOS----------------------------------------
+  private readonly divisiones = ['CONTROL DE PLAGAS', 'LIMPIEZA Y DESINFECCIÓN', 'PRADOS Y JARDINES', 'SANITIZACIÓN'];
+  tituloActual: string = 'GESTIÓN DE SERVICIOS';
+  activeImageIndex = 0;
+
+  changeActiveImageIndex(index: number): void {
+    this.activeImageIndex = index;
+    this.tituloActual = this.divisiones[this.activeImageIndex];
+    this.resumenDiv = this.resumenes[this.activeImageIndex];
+    this.rotateIconContainer();
   }
 
+  //darkmode-------------------------------------------------
   darkMode: boolean = false;
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
     document.body.classList.toggle('dark-mode');
   }
-  @ViewChild('carouselElement', { static: false }) carouselElement!: ElementRef;
-  carouselItems = [
-    { src: './assets/img/website/Logo-Ecovitali-Gris.webp', alt: 'Imagen 1' },
-    { src: './assets/img/website/Logo-Ecovitali-Gris.webp', alt: 'Imagen 2' },
-    { src: './assets/img/website/Logo-Ecovitali-Gris.webp', alt: 'Imagen 3' }
-  ];
-  currentIndex = 0;
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.estadoAnimacion = 'initial';
-      setTimeout(() => {
-        this.estadoAnimacion = 'final';
-      }, 2000);
-    });
+  // RESUMENES -------------------------------------------------------------------
+  public readonly resumenes = [
+    'Texto para Control de Plagas',
+    'Texto para Limpieza y Desinfección',
+    'Texto para Jardinería',
+    'Texto para Sanitización'
+  ]
+
+  resumenDiv: string = 'Texto de Ecovitali como Gestor de Servicios';
+
+  // getResumenDiv(): string {
+  //   return this.activeImageIndex !== -1 ? this.resumenes[this.activeImageIndex] : '';
+  // }
+
+
+
+  //RULETA---------------------------------------------------------------------
+  private rotationAngle = 0;
+  private readonly minAngle = 0;
+  private readonly maxAngle = -135; // Invertir el valor del ángulo máximo para girar hacia la izquierda
+
+  constructor(private renderer: Renderer2) { }
+
+  rotateIconContainer() {
+    const iconContainer = document.querySelector('.icon-container');
+    this.renderer.setStyle(iconContainer, 'transform', `rotate(${this.rotationAngle}deg)`);
   }
 
-  ngAfterViewInit() {
-    this.startAnimation();
+  handleNextClick() {
+    if (this.rotationAngle > this.maxAngle) {
+      this.rotationAngle -= 45;
+      this.changeActiveImageIndex((Math.abs(this.rotationAngle) / 45) % this.divisiones.length);
+    }
   }
 
-  startAnimation() {
-    const carouselItems = this.carouselElement.nativeElement.querySelectorAll('.carousel-item');
-
-    carouselItems[this.currentIndex].addEventListener('animationend', () => {
-      carouselItems[this.currentIndex].classList.remove('active');
-      this.currentIndex = (this.currentIndex + 1) % carouselItems.length;
-      carouselItems[this.currentIndex].classList.add('active');
-    });
+  handlePrevClick() {
+    if (this.rotationAngle < this.minAngle) {
+      this.rotationAngle += 45;
+      this.changeActiveImageIndex((Math.abs(this.rotationAngle) / 45) % this.divisiones.length);
+    }
   }
 }
-
 
 
   // // REDIRECION AL COMPONENTE SERVICIO
   // redirectToContacto() {
   //   this.router.navigate(['/servicios']);
   // }
+
 
